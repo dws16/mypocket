@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mypocket/constant/color_constant.dart';
-import 'package:mypocket/screens/forgot_password_screen.dart';
+import 'package:mypocket/screens/login_screen.dart';
 import 'package:mypocket/screens/register_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   customeShape() {
     return Container(
-      height: 341,
+      height: 381,
       decoration: BoxDecoration(
           image: DecorationImage(
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.fill,
         image: AssetImage('assets/images/pocket.png'),
       )),
     );
@@ -42,20 +43,24 @@ class _LoginScreenState extends State<LoginScreen> {
         children: <Widget>[
           Column(
             children: [
-              Text(
-                'Welcome To',
-                style: TextStyle(
-                    fontSize: 39, color: myPrimary, fontFamily: 'Cream'),
+              SvgPicture.asset(
+                'assets/images/forgot_password.svg',
+                height: 180,
               ),
-              Image(
-                image: AssetImage('assets/images/logo.png'),
-                height: 134,
+              SizedBox(
+                height: 20,
               ),
               Text(
-                'MyPocket',
+                'Forgot your password?',
                 style: TextStyle(
-                    fontSize: 32, color: myPrimary, fontFamily: 'Cream'),
+                    fontSize: 24, color: myPrimary, fontFamily: 'Cream'),
               ),
+              Text(
+                'Enter your registered email below to receive password reset instruction',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: myPrimary.withOpacity(0.75), fontFamily: 'Cream'),
+              )
             ],
           ),
           Column(
@@ -77,53 +82,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(50),
                                 borderSide: BorderSide(color: myPrimary)),
-                            labelText: 'Username',
+                            labelText: 'Email',
                             labelStyle: TextStyle(
                                 color: myPrimary, fontFamily: 'Cream'),
                             prefixIcon: Icon(
-                              Icons.person,
+                              Icons.email,
                               color: myPrimary,
                             )),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: BorderSide(color: myPrimary)),
-                            labelText: 'Password',
-                            labelStyle: TextStyle(
-                                color: myPrimary, fontFamily: 'Cream'),
-                            prefixIcon: Icon(
-                              Icons.vpn_key,
-                              color: myPrimary,
-                            ),
-                            suffixIcon: Icon(
-                              Icons.remove_red_eye,
-                              color: myPrimary,
-                            )),
-                        obscureText: true,
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ForgotPasswordScreen()));
-                        },
-                        // margin: EdgeInsets.only(top: 5, bottom: 10),
-                        child: Text(
-                          'Forgot password?',
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: myPrimary,
-                              fontFamily: 'Cream'),
-                        )),
                     Container(
                         height: 33,
                         width: double.infinity,
@@ -142,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // shape: RoundedRectangleBorder(
                           //     borderRadius: BorderRadius.circular(50)),
                           child: Text(
-                            'Login',
+                            'Send',
                             style: TextStyle(
                                 color: Colors.white, fontFamily: 'Cream'),
                           ),
@@ -153,13 +120,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    RegisterScreen()));
+                                    LoginScreen()));
                       },
-                      child: Text('Create Account',
+                      child: Text('Already have an account? Login',
                           style: TextStyle(
                               fontSize: 12,
                               color: myPrimary,
                               fontFamily: 'Cream')),
+                    ),
+                    SizedBox(
+                      height: 70,
                     )
                   ],
                 ),
