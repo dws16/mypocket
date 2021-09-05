@@ -39,7 +39,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Container(
       margin: EdgeInsets.only(top: 45),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Column(
             children: [
@@ -62,6 +62,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     color: myPrimary.withOpacity(0.75), fontFamily: 'Cream'),
               )
             ],
+          ),
+          SizedBox(
+            height: 90,
           ),
           Column(
             children: [
@@ -127,9 +130,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               fontSize: 12,
                               color: myPrimary,
                               fontFamily: 'Cream')),
-                    ),
-                    SizedBox(
-                      height: 70,
                     )
                   ],
                 ),
