@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mypocket/constant/color_constant.dart';
-import 'package:mypocket/screens/register_screen.dart';
+import 'package:mypocket/screens/login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          child: Stack(
-            alignment: Alignment.topCenter,
-            children: [customeShape(), welcomeLogoPocket()],
+          child: SingleChildScrollView(
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [customeShape(), welcomeLogoPocket()],
+            ),
           ),
         ));
   }
 
   customeShape() {
     return Container(
-      height: 341,
+      height: 320,
       decoration: BoxDecoration(
           image: DecorationImage(
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.fill,
         image: AssetImage('assets/images/pocket.png'),
       )),
     );
@@ -35,27 +38,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
   welcomeLogoPocket() {
     return Container(
-      margin: EdgeInsets.only(top: 45),
+      margin: EdgeInsets.only(top: 20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Column(
             children: [
               Text(
-                'Welcome To',
+                'Register',
                 style: TextStyle(
                     fontSize: 39, color: myPrimary, fontFamily: 'Cream'),
               ),
-              Image(
-                image: AssetImage('assets/images/logo.png'),
-                height: 134,
-              ),
-              Text(
-                'MyPocket',
-                style: TextStyle(
-                    fontSize: 32, color: myPrimary, fontFamily: 'Cream'),
-              ),
+              SvgPicture.asset(
+                'assets/images/register.svg',
+                height: 180,
+              )
             ],
+          ),
+          SizedBox(
+            height: 70,
           ),
           Column(
             children: [
@@ -73,16 +74,43 @@ class _LoginScreenState extends State<LoginScreen> {
                       // margin: EdgeInsets.symmetric(vertical: 1),
                       child: TextFormField(
                         decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: BorderSide(color: myPrimary)),
-                            labelText: 'Username',
-                            labelStyle: TextStyle(
-                                color: myPrimary, fontFamily: 'Cream'),
-                            prefixIcon: Icon(
-                              Icons.person,
-                              color: myPrimary,
-                            )),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: BorderSide(color: myPrimary)),
+                          labelText: 'Name',
+                          labelStyle:
+                              TextStyle(color: myPrimary, fontFamily: 'Cream'),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      // margin: EdgeInsets.symmetric(vertical: 1),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: BorderSide(color: myPrimary)),
+                          labelText: 'Username',
+                          labelStyle:
+                              TextStyle(color: myPrimary, fontFamily: 'Cream'),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      // margin: EdgeInsets.symmetric(vertical: 1),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: BorderSide(color: myPrimary)),
+                          labelText: 'Email',
+                          labelStyle:
+                              TextStyle(color: myPrimary, fontFamily: 'Cream'),
+                        ),
                       ),
                     ),
                     Container(
@@ -96,10 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             labelText: 'Password',
                             labelStyle: TextStyle(
                                 color: myPrimary, fontFamily: 'Cream'),
-                            prefixIcon: Icon(
-                              Icons.vpn_key,
-                              color: myPrimary,
-                            ),
                             suffixIcon: Icon(
                               Icons.remove_red_eye,
                               color: myPrimary,
@@ -107,24 +131,34 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: true,
                       ),
                     ),
-                    TextButton(
-                        onPressed: () {
-                          print('Forgot nih');
-                        },
-                        // margin: EdgeInsets.only(top: 5, bottom: 10),
-                        child: Text(
-                          'Forgot password?',
-                          style: TextStyle(
-                              fontSize: 12,
+                    Container(
+                      height: 50,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: myPrimary)),
+                            labelText: 'Repeat Password',
+                            labelStyle: TextStyle(
+                                color: myPrimary, fontFamily: 'Cream'),
+                            suffixIcon: Icon(
+                              Icons.remove_red_eye,
                               color: myPrimary,
-                              fontFamily: 'Cream'),
-                        )),
+                            )),
+                        obscureText: true,
+                      ),
+                    ),
                     Container(
                         height: 33,
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            print('Login nih');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        LoginScreen()));
                           },
                           style: ButtonStyle(
                               backgroundColor:
@@ -137,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // shape: RoundedRectangleBorder(
                           //     borderRadius: BorderRadius.circular(50)),
                           child: Text(
-                            'Login',
+                            'Sign me up!',
                             style: TextStyle(
                                 color: Colors.white, fontFamily: 'Cream'),
                           ),
@@ -148,9 +182,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    RegisterScreen()));
+                                    LoginScreen()));
                       },
-                      child: Text('Create Account',
+                      child: Text('Already have an account? Login',
                           style: TextStyle(
                               fontSize: 12,
                               color: myPrimary,
